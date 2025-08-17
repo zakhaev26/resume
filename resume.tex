@@ -1,97 +1,187 @@
-\documentclass[a4paper]{article}
-    \usepackage{fullpage}
-    \usepackage{amsmath}
-    \usepackage{amssymb}
-    \usepackage{textcomp}
-    \usepackage[utf8]{inputenc}
-    \usepackage[T1]{fontenc}
-    \textheight=10in
-    \usepackage{hyperref}
-    \usepackage{xcolor}
-    \pagestyle{empty}
-    \raggedright
-    \usepackage[left=0.4in,right=0.4in,bottom=0in,top=0.5in]{geometry}
+\documentclass[letterpaper,11pt]{article}
 
-    %\renewcommand{\encodingdefault}{cg}
-%\renewcommand{\rmdefault}{lgrcmr}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
 
-\def\bull{\vrule height 0.8ex width .7ex depth -.1ex }
+\pagestyle{fancy}
+\fancyhf{} % Clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
-% DEFINITIONS FOR RESUME %%%%%%%%%%%%%%%%%%%%%%%
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
 
-\definecolor{linkcolor}{RGB}{0, 0, 0}
+\urlstyle{same}
 
-% Configure hyperref to use the custom color
-\hypersetup{
-    colorlinks=true,
-    linkcolor=linkcolor,
-    urlcolor=linkcolor,
+% \raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate PDF is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{ #2 \vspace{-2pt}}
+  }
+}
+
+% Just in case someone needs a heading that does not need to be in a list
+\newcommand{\resumeHeading}[4]{
+    \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{0pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING-----------------
+
+\vspace{-25pt} % shift name up more
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\href{https://gsoubhik.netlify.app/}{\Huge Soubhik Kumar Gon}} & \\
+\end{tabular*}
+
+\vspace{3pt} % less space after name
+
+{\small
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \underline{\href{https://github.com/zakhaev26}{GitHub: zakhaev26}} & 
+  \underline{\href{mailto:soubhikgon2004@gmail.com}{Mail: soubhikgon2004@gmail.com}} \\
+  \underline{\href{https://leetcode.com/soubhikgon/}{Leetcode: soubhikgon}} & 
+  \underline{\href{https://www.linkedin.com/in/soubhikgon/}{LinkedIn: soubhikgon}} \\
+  \underline{\href{https://gsoubhik.netlify.app/}{Portfolio: soubhik.tech}} & 
+  \underline{\href{tel:+916370462354}{Phone: +91-6370462354}} \\
+\end{tabular*}
 }
 
 
-\newcommand{\area} [2] {
-    \vspace*{-9pt}
-    \begin{verse}
-        \textbf{#1}   #2
-    \end{verse}
-}
+\vspace{-10pt} % this will pull the next section closer
 
-\newcommand{\lineunder} {
-    \vspace*{-8pt} \\
-    \hspace*{-18pt} \hrulefill \\
-}
+%-----------EXPERIENCE-----------------
+\section{Experience}
+  \resumeSubHeadingListStart
+      \resumeSubheading
+      {KoinX}{Remote}
+      {Backend Intern - KoinX Books Platform}{June 2025 -- Present}
+      \resumeItemListStart
+      \resumeItem{Optimized Pricing Service:}
+          {Achieved 62\% latency reduction in pricing service by chunking transaction logs, deduplicating price queries, and preloading in-memory cache of DEX/CEX coin symbols, eliminating 100\% redundant DB lookups and cutting external API calls by 60\%.}
+    \resumeItem{Validated Transaction Ledgers:}
+      {Created unit tests for FD and Pool transactions, identified and fixed hidden ledger inconsistencies, improving financial accuracy.}
+\resumeItem{Fair Market Value Adjustment:}
+  {Designed and implemented FMV adjustment for token portfolios, enabling real-time revaluation of 800+ crypto assets to improve P\&L accuracy and support tax compliance.}
+    \resumeItem{Wallet Grouping:}
+      {Simplified portfolio management with wallet grouping, cutting user navigation time.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Creuto}{Remote}
+      {Software Engineer - I}{January 2024 -- June 2025}
+      \resumeItemListStart
+        \resumeItem{SSO and CRM Import Pipeline:}
+        {Developed internal systems, including a secure SSO service to enhance user authentication and a CRM import pipeline processing 100,000 rows in 120s to accelerate data imports.}
+        \resumeItem{Škoda App:}
+          {Backend contributor to Škoda India’s event app (2K+ users) building real-time exams, evaluations, certificate generation, onboarding, and alerts with focus on reliability and low latency.}
+        \resumeItem{Framework Development:}
+          {Developed Nest.js wrapper packages to standardize API development across teams and speed up development across 17 projects, powering features for 10,000+ users.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+%-----------PROJECTS-----------------
+\section{Projects}
+  \resumeSubHeadingListStart
 
-\newcommand{\header} [1] {
-    {\hspace*{-18pt}\vspace*{6pt} \textsc{#1}}
-    \vspace*{-6pt} \lineunder
-}
+\resumeSubheading
+  {Watchdog Monitoring}{\normalfont\small \href{https://github.com/watchdogcloud}{\underline{Source code}}}
+  {\normalfont\small Tech Stack: Feathers.js, Kafka, Redis, Golang}{}
+\resumeItemListStart
+  \resumeItem{Monitoring Platform:}
+    {Developed a real-time monitoring system handling 1.3M+ daily events and 1.2GB data, enabling ops teams to proactively track and resolve API server resource issues (CPU, memory, disk, network).}
+  \resumeItem{Developer Experience \& Tooling:}
+    {Built a lightweight Go SDK with 2-line integration to simplify adoption; implemented exponential backoff and fault-tolerant Kafka/Redis messaging, reducing network payloads by 56\% with Protocol Buffers, and added automated mail alerts for faster anomaly detection.}
+\resumeItemListEnd
 
-\newcommand{\employer} [3] {
-    { \textbf{#1} (#2)\\ \underline{\textbf{\emph{#3}}}\\  }
-}
+\resumeSubheading
+  {FastHash (In‑memory KV Store)}{\normalfont\small \href{https://github.com/zakhaev26/fast-hash}{\underline{Source code}}}
+  {\normalfont\small Tech Stack: C++, STL, CMake}{}
+  \resumeItemListStart
+    \resumeItem{API Design}
+      {Designed an in-memory key-value store and implemented core Redis-like commands (GET, SET/EX, DEL, EXPIRE), delivering low-latency, high-throughput data access with a clean, extensible API.}
+    \resumeItem{Persistence \& Scalability}
+      {Built durable AOF and RDB persistence layers and optimized the system for concurrent client handling and high scalability.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
 
-\newcommand{\contact} [3] {
-    \vspace*{-10pt}
-    \begin{center}
-        {\Huge \scshape {#1}}\\
-        #2 \\ #3
-    \end{center}
-    \vspace*{-8pt}
-}
+%--------SKILLS------------
+\section{Skills}
+\begin{itemize}[leftmargin=*, itemsep=-2pt, topsep=0pt]
+  \item {\textbf{Languages}: Javascript, Typescript, C, C++}
+  \item {\textbf{Technologies}: Node.js, Nest.js, Feathers.js, Express.js, MongoDB, Redis}
+  \item {\textbf{Tools}: Docker, Git, BullMQ, RabbitMQ, Github Actions}
+\end{itemize}
+%-------------------------------------------
 
-\newenvironment{achievements}{
-    \begin{list}
-        {$\bullet$}{\topsep 0pt \itemsep -2pt}}{\vspace*{4pt}
-    \end{list}
-}
-
-\newcommand{\schoolwithcourses} [4] {
-    \textbf{#1} #2 $\bullet$ #3\\
-    #4 \\
-    \vspace*{5pt}
-}
-
-\newcommand{\school} [4] {
-    \textbf{#1} #2 $\bullet$ #3\\
-    #4 \\
-}
-% END RESUME DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%
-
-    \begin{document}
-\vspace*{-38pt}
-
-\vspace*{-10pt}
-\begin{center}
-	{\Huge \scshape {Soubhik Kumar Gon}}\\
-	                   Bhubaneswar,India $\cdot$ \href{b422056@iiit-bh.ac.in}{\textbf{\textcolor{linkcolor}{E-Mail}}} $\cdot$\href{https://github.com/zakhaev26}{\textbf{\textcolor{linkcolor}{Github}}}\\
-\end{center}
-
-
-
-\input{cv/education.tex}
-\input{cv/experience.tex}
-\input{cv/skills.tex}
-\input{cv/projects.tex}
-\input{cv/honors.tex}
-%-------------------------------------------------------------------------------
+%--------ACHIEVEMENTS------------
+\section{Extras}
+\begin{itemize}[leftmargin=*, itemsep=-1pt, topsep=-1pt]
+  \item 1st Place – Competitive Programming Event, Spectra at BGU
+  \item 2nd Place – GfG Hackathon at D3 Fest, IIIT-Bh: built a real-time dev collab platform with video + IDE
+  \item Solved 800+ DSA problems (LeetCode Max Rating: 1810, Global Rank 1086 in Biweekly 161)
+\end{itemize}
+%-------------------------------------------
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {International Institute of Information Technology, Bhubaneswar}{November 2022 -- June 2026}
+      {Bachelor of Technology in Information Technology} {CGPA 8.25}
+  \resumeSubHeadingListEnd
 \end{document}
